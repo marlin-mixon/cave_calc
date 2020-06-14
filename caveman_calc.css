@@ -1,39 +1,11 @@
-#display {
-  width: 600 !important;   /* Use important throughout to override inline style attribute */
-  text-align: right !important;
-  writing-mode: sideways-rl !important;
+.number-key {
+  fill: #aca793 !important;   /* Using !important to override inline styles */
 }
 
-#n-0 path {
-  fill: #aca793 !important;
+.op-key {
+  fill: #aca8b9 !important;
 }
-#n-1 path {
-  fill: #aca793 !important;
-}
-#n-2 path {
-  fill: #aca793 !important;
-}
-#n-3 path {
-  fill: #aca793 !important;
-}
-#n-4 path {
-  fill: #aca793 !important;
-}
-#n-5 path {
-  fill: #aca793 !important;
-}
-#n-6 path {
-  fill: #aca793 !important;
-}
-#n-7 path {
-  fill: #aca793 !important;
-}
-#n-8 path {
-  fill: #aca793 !important;
-}
-#n-9 path {
-  fill: #aca793 !important;
-}
-#pnt path {
-  fill: #aca793 !important;
+
+.key-button {
+  cursor: pointer;
 }

@@ -1,5 +1,5 @@
 #display {
-  width: 600 !important;
+  width: 600 !important;   /* Use important throughout to override inline style attribute */
   text-align: right !important;
   writing-mode: sideways-rl !important;
 }

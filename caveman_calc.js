@@ -1,59 +1,61 @@
 const display = document.getElementById('display');
+const DISPLAY_WIDTH = 90;
+const FIXED_CHAR_WIDTH = 7.75;
+const X_LOC = 39.97;
 var y_reg;
 var operand;
 var new_value = false;
 var has_fraction = false;
 clr();
-document.getElementById('n-0').addEventListener('click', number0);
-document.getElementById('n-1').addEventListener('click', number1);
-document.getElementById('n-2').addEventListener('click', number2);
-document.getElementById('n-3').addEventListener('click', number3);
-document.getElementById('n-4').addEventListener('click', number4);
-document.getElementById('n-5').addEventListener('click', number5);
-document.getElementById('n-6').addEventListener('click', number6);
-document.getElementById('n-7').addEventListener('click', number7);
-document.getElementById('n-8').addEventListener('click', number8);
-document.getElementById('n-9').addEventListener('click', number9);
-document.getElementById('pnt').addEventListener('click', pnt);
-document.getElementById('clr').addEventListener('click', clr);
-document.getElementById('mul').addEventListener('click', mul);
-document.getElementById('equ').addEventListener('click', equ);
-document.getElementById('add').addEventListener('click', add);
-document.getElementById('sub').addEventListener('click', sub);
-document.getElementById('dvd').addEventListener('click', dvd);
-document.getElementById('prc').addEventListener('click', prc);
-document.getElementById('chs').addEventListener('click', chs);
 
-function number0() {
-  key_number(0);
+document.addEventListener('keypress', key_press);
+
+function key_press(e) {
+  console.log(e);
+  if ('1234567890'.indexOf(e.key) >= 0 ) {  // Number key or point
+    key_number(e.key);
+    return;
+  }
+  switch (e.key) {
+    case ".":
+      pnt();
+      break;
+    case "+":
+      add();
+      break;
+    case "/":
+      dvd();
+      break;
+    case "X":
+    case "x":
+    case "*":
+      mul();
+      break;
+    case "%":
+      pct();
+      break;
+    case "C":
+    case "c":
+      clr();
+      break;
+    case "=":
+      equ();
+      break;            
+  }
 }
-function number1() {
-  key_number(1);
+
+function redisplay() {  /* Simulate right justification */
+  let display_length = display.textContent.toString().length;
+  if (display_length > 12) {
+    display.textContent = display.textContent.toString().substr(0, 12);
+    display_length = 12;
+  }
+  let width = display_length * FIXED_CHAR_WIDTH;
+  let x_offset = DISPLAY_WIDTH - width;
+  let x = X_LOC + x_offset;
+  display.setAttribute('x', x);
 }
-function number2() {
-  key_number(2);
-}
-function number3() {
-  key_number(3);
-}
-function number4() {
-  key_number(4);
-}
-function number5() {
-  key_number(5);
-}
-function number6() {
-  key_number(6);
-}
-function number7() {
-  key_number(7);
-}
-function number8() {
-  key_number(8);
-}
-function number9() {
-  key_number(9);
-}
+
 function pnt() {
   if (! has_fraction) {
     key_number('.');
@@ -62,6 +64,7 @@ function pnt() {
 }
 function clr() {
   display.textContent = "0";
+  redisplay();
   operand = "";
   has_fraction = false;
   y_reg = 0;
@@ -105,16 +108,19 @@ function equ() {
       display.textContent = y_reg / display.textContent;
       break;
   }
+  redisplay();
   y_reg = display.textContent;
   new_value = true;
 }
 function prc() {
   display.textContent = display.textContent / 100;
+  redisplay();
   new_value = true;
 }
 
 function chs() {
   display.textContent = display.textContent * -1;
+  redisplay();
 }
 
 function key_number(key) {
@@ -127,4 +133,5 @@ function key_number(key) {
   } else {
     display.textContent += key;
   }
+  redisplay();
 }

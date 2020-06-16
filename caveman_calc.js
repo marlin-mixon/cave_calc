@@ -5,6 +5,7 @@ const X_LOC = 39.97;
 var y_reg;
 var operand;
 var new_value = false;
+var need_intermediate_calc = false;
 var has_fraction = false;
 clr();
 
@@ -70,24 +71,36 @@ function clr() {
   y_reg = 0;
 }
 function mul() {
+  if (need_intermediate_calc) {
+    equ();
+  }
   y_reg = display.textContent;
   new_value = true;
   has_fraction = false;
   operand = "mul";
 }
 function add() {
+  if (need_intermediate_calc) {
+    equ();
+  }  
   y_reg = display.textContent;
   new_value = true;
   has_fraction = false;
   operand = "add";
 }
 function sub() {
+  if (need_intermediate_calc) {
+    equ();
+  }  
   y_reg = display.textContent;
   new_value = true;
   has_fraction = false;
   operand = "sub";
 }
 function dvd() {
+  if (need_intermediate_calc) {
+    equ();
+  }  
   y_reg = display.textContent;
   new_value = true;
   has_decimal = false;
@@ -111,6 +124,7 @@ function equ() {
   redisplay();
   y_reg = display.textContent;
   new_value = true;
+  need_intermediate_calc = false;
 }
 function prc() {
   display.textContent = display.textContent / 100;
@@ -125,6 +139,7 @@ function chs() {
 
 function key_number(key) {
   if (new_value) {
+    need_intermediate_calc = true;
     new_value = false;
     display.textContent = "0";
   }

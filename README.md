@@ -1,5 +1,5 @@
 # cave_calc
-![alt text](Cave_calc.png)
+![screenshot](Cave_calc.png)
 
 SVG-based basic calculator using Javascript
 

@@ -1,4 +1,5 @@
 # cave_calc
+![alt text](cave_calc.png)
 SVG-based basic calculator using Javascript
 
 Basic calculator with crude "stone-age" interface demonstrating use of SVG with Javascript.  Allows use of keyboard operation.
